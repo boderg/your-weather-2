@@ -1,0 +1,19 @@
+{
+  "name": "your-weather",
+  "version": "1.0.0",
+  "description": "- Your weather is a simple weather information page that uses the OpenWeatherMap api. - Your Weather has been designed so that users worldwide can view the weather not only where they are but also in other countries. - Your Weather is especially handy for those who travel and wish to know what the immediate weather is like were they are travelling to. - Your Weather displays the current time and date of the area in which the weather search is for. - Your Weather has a toggle to display the weather in either metric or imperial units. - Your weather has a range of weather details displayed for those that want a little more information other than just the temperature and weather description. - Your weather displays a random background landscape image whenever you open the site. - Your Weather is a weather app for everyone.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "node-fetch": "^3.3.2"
+  }
+}
