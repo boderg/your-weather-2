@@ -3,8 +3,9 @@
 // Declare units variable to store units of measurement and default to metric.
 let units = 'metric';
 
-/* Function to get weather data from OpenWeatherMap API, 
- *  declaring api key and city name based on user input.
+/* Function to get weather data from OpenWeatherMap API,
+ *  via fetch method from nodejs and express server, 
+ *  declaring city name based on user input.
  */
 function getWeather() {
   const cityInput = document.getElementById('cityInput');
