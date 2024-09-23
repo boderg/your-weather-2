@@ -1,4 +1,18 @@
 /* Main body */
+* {
+  box-sizing: border-box;
+}
+
+/* Color variables */
+
+:root {
+  --display-background: linear-gradient(135deg, #7f0ffb, #c27b6f);
+  --text-color: #9ecffa;
+  --text-hover-color: #fafafa;
+  --box-shadow-color: #000;
+  --drop-shadow-color: #9ecffa;
+  --modal-background: rgba(0, 0, 0, 0.4);
+}
 
 body {
   margin: 0;
@@ -14,17 +28,6 @@ body {
   font-family: 'Play', sans-serif;
   color: var(--text-color);
   overflow: hidden;
-}
-
-/* Color variables */
-
-:root {
-  --display-background: linear-gradient(135deg, #7f0ffb, #c27b6f);
-  --text-color: #9ecffa;
-  --text-hover-color: #fafafa;
-  --box-shadow-color: #000;
-  --drop-shadow-color: #9ecffa;
-  --modal-background: rgba(0, 0, 0, 0.4);
 }
 
 /* Navigation / About button */
