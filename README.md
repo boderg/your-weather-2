@@ -1,4 +1,4 @@
-# [YOUR WEATHER](https://boderg.github.io/your-weather "Click to view the deployed site")
+# [YOUR WEATHER 2](https://boderg.github.io/your-weather "Click to view the deployed site")
 
 - Your weather is a simple weather information page that uses the OpenWeatherMap api.
 - Your Weather has been designed so that users worldwide can view the weather not only where they are but also in other countries.
@@ -8,6 +8,9 @@
 - Your weather has a range of weather details displayed for those that want a little more information other than just the temperature and weather description.
 - Your weather displays a random background landscape image whenever you open the site.
 - Your Weather is a weather app for everyone.
+- This version has been enhanced with Weather Alerts and a cleaner layout.
+- The Frontend has been re-written with a new HTML, CSS and Bootstrap structure.
+- This version has had a NodeJS backend added.
 
 ## Table of Contents
 
@@ -182,7 +185,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 - [HTML](https://en.wikipedia.org/wiki/HTML) used for the main site content.
 - [CSS](https://en.wikipedia.org/wiki/CSS) used for the main site design and layout.
 - [CSS :root variables](https://www.w3schools.com/css/css3_variables.asp) used for reusable styles throughout the site.
-- [CSS Flexbox](https://www.w3schools.com/css/css3_flexbox.asp) used for an enhanced responsive layout.
+- [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/) used for an enhanced responsive layout.
 - [JavaScript](https://www.javascript.com) used for user interaction on the site.
 - [Git](https://git-scm.com) used for version control. (`git add`, `git commit`, `git push`)
 - [GitHub](https://github.com) used for secure online code storage.
@@ -254,7 +257,6 @@ The following are credits to various people and technologies that have directly 
 | --- | --- | --- |
 | [Markdown Builder](https://tim.2bn.dev/markdown-builder) | README and TESTING | tool to help generate the Markdown files |
 | [Chris Beams](https://chris.beams.io/posts/git-commit) | version control | "How to Write a Git Commit Message" |
-| [W3Schools](https://www.w3schools.com/howto/howto_css_modals.asp) | Main page | interactive pop-up (modal) for the about section |
 | [W3Schools](https://www.w3schools.com/howto/howto_css_switch.asp) | Main page | interactive toggle switch |
 | [YouTube](https://www.youtube.com/watch?v=WZNG8UomjSI&t=1783s) | Main page | a source to get an idea of how to lay out the page |
 | [Coding Nepal](https://www.codingnepalweb.com/weather-app-project-html-javascript/) | Main page | a source to get an idea for how to structure my javascript file |
@@ -267,7 +269,7 @@ The following are credits to various people and technologies that have directly 
 
 | Source | Location | Type | Notes |
 | --- | --- | --- | --- |
-| [Unsplash](https://source.unsplash.com/random?landscape) | Main changing background | image | Landscape image selection |
+| [Night Cafe](https://creator.nightcafe.studio/) | Main changing background | images | Landscape image selection created using Night Cafe creator  |
 
 ### Acknowledgements
 
