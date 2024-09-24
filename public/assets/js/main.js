@@ -21,6 +21,7 @@ function getWeather() {
     .then(data => {
       displayWeather(data);
       displayForecast(data);
+      alertInfo(data);
     })
     .catch(error => {
       console.error('Error fetching weather data:', error);
@@ -42,10 +43,10 @@ function getWeather() {
     const timezoneOffset = data.timezone_offset;
 
     /* Timezone offset is calculated based on user input city name, 
-      *  it is then formatted to display date and time in local time.
-      * All time and date conversions are constructed using information from the 
-      *  Toptal (https://www.toptal.com/software/definitive-guide-to-datetime-manipulation) web site.
-      */
+    *  it is then formatted to display date and time in local time.
+    *  All time and date conversions are constructed using information from the 
+    *  Toptal (https://www.toptal.com/software/definitive-guide-to-datetime-manipulation) web site.
+    */
     const now = new Date();
     const cityTime = new Date(now.getTime() + (now.getTimezoneOffset() * 60 * 1000) + (timezoneOffset * 1000));
     const options = {
@@ -56,11 +57,19 @@ function getWeather() {
       hour: 'numeric',
       minute: 'numeric'
     };
+
+    // Function to capitalize the first letter of each word
+    function capitalizeWords(str) {
+      return str.replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    // Capitalize the city name
+    const capitalizedCityName = capitalizeWords(cityName);
     const cityDateTime = new Intl.DateTimeFormat('en-GB', options).format(cityTime);
 
     /* Sunrise and sunset times are converted from unix timestamp 
-      *  to local time based on user input.  
-      */
+    *  to local time based on user input.  
+    */
     const sunriseDate = new Date((sunrise + timezoneOffset) * 1000);
     const sunsetDate = new Date((sunset + timezoneOffset) * 1000);
 
@@ -69,20 +78,23 @@ function getWeather() {
     const sunsetTime = sunsetDate.getUTCHours().toString().padStart(2, '0') + ':' + sunsetDate.getUTCMinutes().toString().padStart(2, '0');
 
     /* Temperature, feels like temperature and wind speed 
-      *  are queried based on the declared units of measurement.
-      */
-    let tempSymbol = units === 'imperial' ? '°f' : '°c';
+    *  are queried based on the declared units of measurement.
+    */
+    let tempSymbol = units === 'imperial' ? '°F' : '°C';
     let windUnit = units === 'imperial' ? 'mph' : 'm/s';
+
+    // Capitalize the weather description
+    const capitalizedDescription = capitalizeWords(description);
 
     // HTML is generated using variables created from deconstructed weather data.
     const htmlCurrent = `
-                <p class="date-time">${cityDateTime}</p>
-                <h2 class="city">${cityName}</h2>
-                <h1 class="temp">${temperature.toFixed(1)} <sup>${tempSymbol}</sup></h1>
-                <p class="feels">Feels Like: ${feels_like.toFixed(1)} <sup>${tempSymbol}</sup></p>
-                <img class="icon" src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="weatherIcon">
-                <p class="description">${description}</p>
-                <p class="humidity">Humidity: ${humidity} <sup>%</sup></p>
+                <h5 class="date-time">${cityDateTime}</h5>
+                <h2 class="city">${capitalizedCityName}</h2>
+                <h1 class="temp">${temperature.toFixed(1)}<sup>${tempSymbol}</sup></h1>
+                <h5 class="feels">Feels Like: ${feels_like.toFixed(1)}<sup>${tempSymbol}</sup></h5>
+                <img class="icon" src="https://openweathermap.org/img/wn/${icon}@4x.png" alt="weatherIcon">
+                <p class="description">${capitalizedDescription}</p>
+                <p class="humidity">Humidity: ${humidity}<sup>%</sup></p>
                 <p class="wind">Wind Speed: ${wind} ${windUnit}</p>
                 <p class="pressure">Atmospheric Pressure: ${pressure} hPa</p>
                 <p class="sunrise-set">Sunrise: ${sunriseTime} / Sunset: ${sunsetTime}</p>`;
@@ -135,13 +147,16 @@ function getWeather() {
     // htmlForecast variable is declared as an empty string.
     let htmlForecast = '';
 
-    /* For loop to iterate through forecast data,
-      *  convert date and time to weekdays
-      *  and declare the next four days of the week
-      *  from the current day.
-      * Data is then declared using deconstruction method.
-      */
-    for (let i = 1; i <= 4; i++) {
+    // Helper function to capitalize each word in a string
+    function capitalizeWords(str) {
+    return str.replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    /* For loop to iterate through forecast data, convert date and time to weekdays
+    *  and declare the next four days of the week from the current day.
+    *  Data is then declared using deconstruction method.
+    */
+    for (let i = 1; i <= 5; i++) {
       const forecastDate = new Date((forecast[i].dt + data.timezone_offset) * 1000);
       const forecastDay = forecastDate.toLocaleString('en-GB', {
         weekday: 'long'
@@ -149,22 +164,57 @@ function getWeather() {
       const forecastIcon = forecast[i].weather[0].icon;
       const forecastTemp = forecast[i].temp.day.toFixed(1);
       const forecastDescription = forecast[i].weather[0].description;
+      // Capitalize the weather description
+      const capitalizedForecastDescription = capitalizeWords(forecastDescription);
 
       // Temperature is queried based on the declared units of measurement.
-      let tempSymbol = units === 'imperial' ? '°f' : '°c';
+      let tempSymbol = units === 'imperial' ? '°F' : '°C';
 
       // HTML is generated based on deconstructed forecast data.
       htmlForecast += `
+              <div class="col-sm-2 mx-auto my-2 text-center">
                 <div class="forecast-day">
-                    <p class="forecast-date">${forecastDay}</p>
-                    <p class="forecast-temp">${forecastTemp} <sup>${tempSymbol}</sup></p>
-                    <img class="forecast-icon" src="https://openweathermap.org/img/wn/${forecastIcon}.png" alt="forecastIcon">                    
-                    <p class="forecast-description">${forecastDescription}</p>
-                </div>`;
+                    <h5 class="forecast-date">${forecastDay}</h5>
+                    <h6 class="forecast-temp">${forecastTemp}<sup>${tempSymbol}</sup></h6>
+                    <img class="forecast-icon" src="https://openweathermap.org/img/wn/${forecastIcon}@2x.png" alt="forecastIcon">                    
+                    <p class="forecast-description">${capitalizedForecastDescription}</p>
+                </div>
+              </div>`;
     }
 
     // HTML is displayed on page.
-    forecastInfo.innerHTML = htmlForecast;
+    forecastInfo.innerHTML = `<div class="row">${htmlForecast}</div>`;
+  }
+
+  // Function to declare variables based on weather alerts.
+  function alertInfo(data) {
+    const alerts = data.alerts;
+    const alertInfo = document.getElementById('alertInfo');
+    const alertsContainer = document.getElementById('alertsContainer');
+  
+    if (alerts && alerts.length > 0) {
+      let alertMessage = '';
+  
+      alerts.forEach(alert => {
+        alertMessage += `
+                <div class="col-sm-12 mx-auto my-2 text-center">
+                  <div class="alertInfo text-center">
+                      <h2 class="heading text-center">Weather Alert!</h2>
+                      <h3>${alert.event}</h3>
+                      <p>${alert.description}</p>
+                      <p>From: ${new Date((alert.start + data.timezone_offset) * 1000).toLocaleString()}</p>
+                      <p>To: ${new Date((alert.end + data.timezone_offset) * 1000).toLocaleString()}</p>
+                  </div>
+                </div>`;
+      });
+  
+      // Hide the alert banner if there are no alerts.
+      alertInfo.innerHTML = `<div class="row">${alertMessage}</div>`;
+      alertsContainer.classList.remove('d-none');
+    } else {
+      alertInfo.innerHTML = '';
+      alertsContainer.classList.add('d-none');
+    }
   }
 }
 
@@ -191,28 +241,3 @@ document.getElementById('units').addEventListener('change', function () {
   }
   getWeather();
 });
-
-/* Declare variables for modal.
- * Modal code obtained and adapted from the 
- *  W3Schools (https://www.w3schools.com/howto/howto_css_modals.asp) web site.
-*/
-var modal = document.getElementById("about");
-var btn = document.getElementById("aboutBtn");
-var span = document.getElementsByClassName("close")[0];
-
-// Event listener to open modal.
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// Event listener to close modal when user clicks close 'x'.
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Event listener to close modal when user clicks outside of modal.
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
