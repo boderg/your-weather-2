@@ -1,372 +1,174 @@
-/* Main body */
+/* Main - Root - Body */
+
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-/* Color variables */
-
 :root {
-  --display-background: linear-gradient(135deg, #7f0ffb, #c27b6f);
-  --text-color: #9ecffa;
-  --text-hover-color: #fafafa;
-  --box-shadow-color: #000;
-  --drop-shadow-color: #9ecffa;
-  --modal-background: rgba(0, 0, 0, 0.4);
+    --display-background: linear-gradient(135deg, #7f0ffbcf, #c27b6fcf);
+    --text-color: #9ecffa;
+    --text-hover-color: #fafafa;
+    --box-shadow-color: #000;
+    --drop-shadow-color: #9ecffa;
+    --modal-background: #9ecffa55;
 }
 
 body {
-  margin: 0;
-  padding: 1em 0 2.5em 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: #9ecffa;
-  background: url(../images/weather-backgrounds/default-weather.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  font-family: 'Play', sans-serif;
-  color: var(--text-color);
-  overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: #9ecffa;
+    background: url(../images/weather-backgrounds/default-weather.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Play', sans-serif;
+    color: var(--text-color);
 }
 
-/* Navigation / About button */
+/* Nav button */
 
-.nav {
-  position: fixed;
-  top: 10px;
-  left: 0;
-  width: 100%;
-  z-index: 2;
+.nav .btn {
+    background: var(--display-background);
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    color: var(--text-color);
+    box-shadow: 0 0 10px var(--box-shadow-color);
 }
 
-.about {
-  display: flex;
-  margin: 0 auto;
-  padding: 0.5em;
-  font-size: 1em;
-  border: none;
-  box-shadow: 0 0 10px var(--box-shadow-color);
-  color: var(--text-color);
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
+.nav .btn:hover {
+    color: var(--text-hover-color);
 }
 
-.about:hover {
-  color: var(--text-hover-color);
+/* Weather cards */
+
+.container {
+    background: var(--display-background);
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    box-shadow: 0 0 20px var(--box-shadow-color);
+    color: var(--text-color);
 }
 
-/* Main weather card */
+/* Form */
 
-main {
-  display: flex;
-  justify-content: center;
-  width: 100vw;
+.form input {
+    background: var(--text-color);
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    padding: 3px;
 }
 
-.heading {
-  text-align: center;
+.form button {
+    background: var(--text-color);
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
 }
 
-.card {
-  background: var(--display-background);
-  width: 50%;
-  max-width: 420px;
-  padding: 1em;
-  border-radius: 10px;
-  box-shadow: 0 0 10px var(--box-shadow-color);
-}
-
-/* Main city input form */
-
-.form {
-  display: flex;
-}
-
-button,
-input {
-  padding: 0.5em;
-  text-align: center;
-  vertical-align: middle;
-  background: var(--display-background);
-  border: 1px solid var(--text-color);
-  border-radius: 5px;
-  outline: none;
-  font-family: 'Play', sans-serif;
-}
-
-.search {
-  color: var(--text-color);
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
-}
-
-.search-icon {
-  font-size: 1.5em;
-}
-
-input {
-  width: calc(100% - 80px);
-  margin: 0.5em;
-  color: var(--text-hover-color);
-  font-size: 1em;
-}
-
-.search:hover {
-  color: var(--text-hover-color);
-  border: 1px solid var(--text-hover-color);
-}
-
-::placeholder {
-  color: var(--text-color);
-}
-
-/* Weather card info */
-
-#weatherInfo {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.city {
-  text-transform: capitalize;
-}
-
-.icon {
-  filter: drop-shadow(0 0 20px var(--drop-shadow-color));
-}
-
-p {
-  margin: 0;
-  padding: 0.5em;
-  text-align: center;
-}
-
-/* Forecast card info */
-
-.forecastInfo {
-  max-width: 420px;
-  justify-content: space-evenly;
-  margin: 0.5em;
-}
-
-.forecast-day {
-  width: 100%;
-  padding: 0.5em;
-  margin: 1.5em 0.5em;
-  background: var(--display-background);
-  border-radius: 10px;
-  box-shadow: 0 0 10px var(--box-shadow-color);
-  text-align: center;
-}
-
-.forecast-day p {
-  margin: 0;
-  padding: 0.2em;
-}
-
-.forecast-icon {
-  filter: drop-shadow(0 0 10px var(--drop-shadow-color));
-}
-
-.description,
-.forecast-description {
-  text-transform: capitalize;
-}
-
-/* Footer */
-
-.footer {
-  position: fixed;
-  text-align: center;
-  bottom: 10px;
-  padding: 0.5em;
-  background: var(--display-background);
-  border-radius: 5px;
-  box-shadow: 0 0 10px var(--box-shadow-color);
-}
-
-.footer a {
-  color: var(--text-color);
-  text-decoration: none;
-  transition: 0.2s ease-in-out;
-}
-
-.footer a:hover {
-  color: var(--text-hover-color);
-}
-
-/* Modal */
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 3;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: var(--modal-background);
-}
-
-.content {
-  background: var(--display-background);
-  margin: auto;
-  padding: 20px;
-  border: none;
-  width: 50%;
-  border-radius: 10px;
-  box-shadow: 0 0 10px var(--box-shadow-color);
-}
-
-.content a {
-  color: var(--text-color);
-  text-decoration: none;
-  transition: 0.2s ease-in-out;
-}
-
-.content a:hover {
-  color: var(--text-hover-color);
-}
-
-.close {
-  color: var(--text-color);
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: var(--text-hover-color);
-  text-decoration: none;
-  cursor: pointer;
+.form button:hover {
+    border: 1px solid var(--text-color);
 }
 
 /* Metric/Imperial switch */
 
 .switch {
-  position: relative;
-  display: inline-block;
-  left: calc(50% - 33px);
-  width: 44px;
-  height: 24px;
-  margin: 0.5em;
+    position: relative;
+    width: 60px;
+    height: 29px;
+    margin: 0.5em;
 }
 
 .switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--text-color);
-  transition: 0.4s;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--text-color);
+    transition: 0.4s;
 }
 
 .slider:before {
-  position: absolute;
-  height: 20px;
-  width: 20px;
-  left: 2px;
-  bottom: 2px;
-  background: var(--display-background);
-  transition: 0.4s;
-  content: "°c";
+    position: absolute;
+    height: 25px;
+    width: 35px;
+    left: 2px;
+    bottom: 2px;
+    background: var(--display-background);
+    transition: 0.4s;
+    content: "°C";
 }
 
 input:checked+.slider {
-  background: var(--text-color);
+    background: var(--text-color);
 }
 
 input:checked+.slider:before {
-  transform: translateX(20px);
-  background: var(--display-background);
-  content: "°f";
+    transform: translateX(20px);
+    background: var(--display-background);
+    content: "°F";
 }
 
 .slider.round {
-  border-radius: 4px;
+    border-radius: 4px;
 }
 
 .slider.round:before {
-  border-radius: 4px;
+    border-radius: 4px;
 }
 
-/* Media queries for responsiveness */
+/* Icon */
 
-@media screen and (max-height: 800px) {
-
-  body {
-    overflow: auto;
-  }
-
-  .card {
-    width: 80%;
-    margin: 3em 0.25em 1.1em 0.25em;
-  }
-
-  .forecastInfo {
-    margin: 3em 0.25em 1.1em 0.25em;
-  }
+.icon, .forecast-icon {
+    background-color: #00000044;
+    border-radius: 25%;
+    border: 1px solid var(--text-color);
+    filter: drop-shadow(0 0 5px var(--drop-shadow-color));
 }
 
-@media screen and (max-width: 768px) {
+/* Footer */
 
-  body {
-    overflow: auto;
-  }
-
-  main {
-    flex-direction: column;
-  }
-
-  .card {
-    width: 80%;
-    margin: 3em auto 0.5em auto;
-  }
-
-  .forecastInfo {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0 auto;
-  }
-
-  .forecast-day {
-    width: 85%;
-    margin: 0.5em;
-  }
-
-  .footer {
-    font-size: 0.75em;
-  }
-
-  .modal {
-    max-height: calc(100vh - 100px);
-    overflow-y: auto;
-  }
-
-  .content {
-    width: 80%;
-  }
+.footer {
+    background: var(--display-background);
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--box-shadow-color);
 }
 
-/* 404 Page - style uses index.html classes .heading, .card and .about */
+.footer a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: 0.2s ease-in-out;
+}
 
-a {
-  text-decoration: none;
+.footer a:hover {
+    color: var(--text-hover-color);
+}
+
+/* Modal */
+
+.modal {
+    background: var(--modal-background);
+}
+
+.modal-content {
+    background: var(--display-background);
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--box-shadow-color);
+}
+
+.modal-content a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: 0.2s ease-in-out;
+}
+
+.modal-content a:hover {
+    color: var(--text-hover-color);
 }
