@@ -14,7 +14,7 @@
 
 ## Mockup Screenshots
 
-Below are two mockup images of the Your Weather website created using the "Am I Responsive" website.
+Below is a mockup image of the Your Weather (version 2) website created using the "Am I Responsive" website.
 
 | Screenshot |
 | :---: |
