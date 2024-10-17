@@ -65,9 +65,9 @@
 
 Below are two mockup images of the Your Weather website created using the "Am I Responsive" website.
 
-| Screenshot 1 | Screenshot 2 |
-| :---: | :---: |
-| ![screenshot](documentation/mockups/Am%20I%20Responsive1.png) | ![screenshot](documentation/mockups/Am%20I%20Responsive2.png) |
+| Screenshot |
+| :---: |
+| ![screenshot](documentation/mockups/Am%20I%20Responsive3.png) |
 
 ## UX
 
